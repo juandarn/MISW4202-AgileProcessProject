@@ -1,0 +1,88 @@
+.detalle-restaurante {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  gap: 2.5rem;
+  height: 100vh;            
+  padding: 2rem;             
+  max-width: 1200px;
+  margin: 0 auto;           
+}
+
+.detalle-restaurante .info {
+  flex: 1;
+}
+
+.detalle-restaurante .nombre {
+  font-size: 2.5rem;   /* más grande que antes */
+  font-weight: bold;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  color: #111;         /* negro elegante */
+  transition: color 0.2s ease;
+}
+
+.detalle-restaurante .nombre:hover {
+  color: #444;         /* gris más claro al pasar el mouse */
+  text-decoration: underline;
+}
+
+.detalle-restaurante p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.horario {
+  margin-left: 1rem;
+  font-style: italic;
+}
+
+.acciones {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.editar {
+  background-color: #6366f1;
+  color: white;
+}
+
+.eliminar {
+  background-color: #ef4444;
+  color: white;
+}
+
+.detalle-restaurante .imagen {
+  flex: 1;
+  max-width: 550px; 
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.detalle-restaurante .imagen img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.placeholder {
+  width: 100%;
+  height: 300px;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-weight: bold;
+  border-radius: 12px;
+}

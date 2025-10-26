@@ -1,0 +1,28 @@
+/* Título principal */
+.titulo-chef {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nombre-chef {
+  color: #6c63ff;
+  font-weight: 800;
+  margin-left: 5px;
+}
+
+.titulo-divider {
+  width: 60%;
+  margin: 12px auto;
+  border: 1px solid #6c63ff;
+  opacity: 0.4;
+}
+
+/* Badge especialidad */
+.bg-purpura {
+  background-color: #6c63ff;
+  color: white;
+}

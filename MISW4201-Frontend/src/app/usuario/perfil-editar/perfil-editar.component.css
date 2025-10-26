@@ -1,0 +1,155 @@
+/* === Menú superior === */
+.perfil-menu {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.menu-btn {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.menu-btn.salir {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
+.menu-btn.salir:hover {
+  background-color: #e63946;
+  transform: scale(1.05);
+}
+
+/* Activos */
+.menu-btn.active-perfil {
+  border: 2px solid #4CAF50; /* Verde */
+}
+
+.menu-btn.active-restaurantes {
+  border: 2px solid #6c63ff; /* Morado */
+}
+
+/* === Caja principal del perfil === */
+.perfil-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(108, 99, 255, 0.2);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.perfil-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.perfil-header h2 {
+  color: #333;
+  font-weight: bold;
+}
+
+.badge {
+  background-color: #6c63ff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.perfil-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+
+.perfil-item label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  display: block;
+  color: #555;
+}
+
+.form-control {
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 8px rgba(108, 99, 255, 0.3);
+  outline: none;
+}
+
+.botones-centrados {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-guardar {
+  background-color: #6c63ff;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-guardar:hover {
+  background-color: #5851db;
+  transform: scale(1.05);
+}
+
+.btn-cancelar {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

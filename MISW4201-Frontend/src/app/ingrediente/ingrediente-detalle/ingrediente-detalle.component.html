@@ -1,0 +1,101 @@
+<app-encabezado></app-encabezado>
+
+<div class="container mt-4">
+  <!-- Título del ingrediente -->
+  <div class="text-center mb-4">
+    <h2 class="titulo-ingrediente">
+      <i class="bi bi-box-seam me-2"></i>
+      Detalle del ingrediente:
+      <span class="nombre-ingrediente">{{ ingrediente?.nombre }}</span>
+    </h2>
+    <hr class="titulo-divider" />
+  </div>
+
+  <!-- Información básica del ingrediente -->
+  <div class="card shadow-sm mb-4 border-0 rounded-3">
+    <div class="card-body">
+      <table class="table table-hover align-middle mb-0">
+        <tbody>
+          <tr *ngIf="ingrediente?.mejor_proveedor">
+            <th class="text-end text-muted w-25">Mejor proveedor:</th>
+            <td>
+              <span class="fw-semibold text-dark">
+                {{ ingrediente.mejor_proveedor.nombre }}
+              </span>
+              <span class="text-purple fw-bold ms-2">
+                ${{ ingrediente.mejor_precio }}
+              </span>
+              <span class="badge bg-warning text-dark ms-2">
+                <i class="bi bi-star-fill"></i> Destacado
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-end text-muted w-25">Cantidad total:</th>
+            <td>
+              <span class="badge bg-purpura fs-6 px-3 py-2 rounded-pill">
+                {{ ingrediente?.total_cantidad }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Lista de proveedores -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-semibold text-purple">
+      Proveedores que venden este ingrediente
+    </h5>
+  </div>
+
+  <div class="tabla">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Proveedor</th>
+          <th>Teléfono</th>
+          <th>Correo</th>
+          <th>Dirección</th>
+          <th>Precio/unidad</th>
+          <th>Cantidad</th>
+          <th class="text-center">Calificación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let pi of listaProveedores"
+          class="table-row-custom"
+          [ngClass]="{
+            'mejor-proveedor': ingrediente?.mejor_proveedor?.id === pi.proveedor.id
+          }"
+        >
+          <td>
+            {{ pi.proveedor.nombre }}
+            <i
+              *ngIf="ingrediente?.mejor_proveedor?.id === pi.proveedor.id"
+              class="bi bi-star-fill text-warning ms-1"
+              title="Mejor proveedor"
+            ></i>
+          </td>
+          <td>{{ pi.proveedor.telefono }}</td>
+          <td>{{ pi.proveedor.correo }}</td>
+          <td>{{ pi.proveedor.direccion }}</td>
+          <td>
+            <span class="fw-semibold text-purple">${{ pi.precio }}</span>
+          </td>
+          <td>{{ pi.cantidad }}</td>
+          <td class="text-center">
+            <span
+              class="calificacion-circle"
+              [ngClass]="getColor(pi.proveedor.calificacion)"
+            >
+              {{ pi.proveedor.calificacion }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

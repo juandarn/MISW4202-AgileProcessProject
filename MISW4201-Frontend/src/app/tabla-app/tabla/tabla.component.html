@@ -1,0 +1,137 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <select
+        class="form-select form-select-sm w-auto"
+        [(ngModel)]="tamanoPagina"
+        (change)="pagina = 1"
+      >
+        <option [value]="10">10</option>
+        <option [value]="25">25</option>
+        <option [value]="50">50</option>
+      </select>
+      <span>Filas</span>
+      <input
+        type="text"
+        class="form-control form-control-sm ms-2"
+        placeholder="Buscar..."
+        [(ngModel)]="busqueda"
+        (input)="pagina = 1"
+      />
+    </div>
+
+    <!-- Botón Crear controlado por flag -->
+    <button
+      *ngIf="mostrarBotonCrear"
+      class="btn-purpura"
+      (click)="crear()"
+    >
+      <i class="bi bi-plus"></i> Agregar
+    </button>
+  </div>
+
+  <div class="tabla">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th
+            *ngFor="let col of columnasVisibles"
+            [class.text-center]="col.tipo === 'accion' || col.tipo === 'calificacion'"
+            [attr.role]="col.ordenable ? 'button' : null"
+            (click)="col.ordenable ? cambiarCriterioDeOrden(col.campo) : null"
+          >
+            {{ col.encabezado }}
+            <i
+              *ngIf="col.ordenable"
+              class="bi"
+              [ngClass]="
+                campoOrden === col.campo
+                  ? esOrdenAscendente
+                    ? 'bi-caret-up-fill text-purple'
+                    : 'bi-caret-down-fill text-purple'
+                  : 'bi-caret-down text-muted'
+              "
+            ></i>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let fila of datosPaginados"
+          class="table-row-custom"
+          (click)="manejarClickFila(fila)"
+        >
+          <td
+            *ngFor="let col of columnasVisibles"
+            [class]="col.clase"
+            [class.text-center]="col.tipo === 'calificacion' || col.tipo === 'accion'"
+          >
+            <ng-container [ngSwitch]="col.tipo">
+              <!-- Fecha -->
+              <ng-container *ngSwitchCase="'fecha'">
+                {{ fila[col.campo] | date : col.formato || 'dd/MM/yyyy' }}
+              </ng-container>
+
+              <!-- Acciones -->
+              <ng-container *ngSwitchCase="'accion'">
+                <i
+                  *ngIf="fila.recetas"
+                  style="cursor: pointer;"
+                  role="button"
+                  tabindex="0"
+                  (click)="$event.stopPropagation(); accion.emit({ accion: 'detalle', datos: fila })"
+                ></i>
+                <i
+                  *ngIf="fila.id && mostrarBotonEditar"
+                  class="bi bi-pencil-square fs-5 me-3"
+                  (click)="$event.stopPropagation(); editar(fila)"
+                ></i>
+                <i
+                  *ngIf="fila.id && mostrarBotonEliminar"
+                  class="bi bi-trash fs-5"
+                  (click)="$event.stopPropagation(); eliminar(fila)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#confirmDeleteModal"
+                ></i>
+              </ng-container>
+
+              <!-- Calificación -->
+              <ng-container *ngSwitchCase="'calificacion'">
+                <span class="calificacion-circle" [ngClass]="getColor(fila[col.campo])">
+                  {{ fila[col.campo] }}
+                </span>
+              </ng-container>
+
+              <!-- Texto por defecto -->
+              <ng-container *ngSwitchDefault>
+                {{ fila[col.campo] }}
+              </ng-container>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav>
+    <ul class="pagination pagination-sm justify-content-center">
+      <li class="page-item" [class.disabled]="pagina === 1">
+        <a class="page-link" (click)="pagina = pagina - 1">Anterior</a>
+      </li>
+      <li
+        class="page-item"
+        *ngFor="let p of paginasTotales"
+        [class.active]="pagina === p"
+      >
+        <a class="page-link" (click)="pagina = p">{{ p }}</a>
+      </li>
+      <li
+        class="page-item"
+        [class.disabled]="pagina >= paginasTotales.length || paginasTotales.length === 0"
+      >
+        <a class="page-link" (click)="pagina = pagina + 1">Siguiente</a>
+      </li>
+    </ul>
+  </nav>
+</div>

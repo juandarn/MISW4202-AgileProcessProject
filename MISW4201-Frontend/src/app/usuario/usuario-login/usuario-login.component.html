@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="text-center mb-4">
+    <h1 class="titulo">Recetario</h1>
+    <p class="subtitulo">Comer mejor es vivir mejor</p>
+  </div>
+
+  <div class="login-card">
+    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+    <div *ngIf="error!=''">
+      <div class="alert alert-danger" role="alert">
+        Usuario o contraseña incorrectos
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Usuario</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-person"></i>
+        </span>
+        <input #usuario type="text" class="form-control" placeholder="Usuario">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <div class="input-group">
+        <input #contrasena type="password" class="form-control" placeholder="********">
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button (click)="loginUsuario(usuario.value, contrasena.value)" type="button" class="btn btn-primary w-100">
+        Inicio Sesión
+      </button>
+    </div>
+
+    <div class="text-center mt-3">
+      <small>¿No tienes una cuenta? <a href="/registro">Regístrate</a></small>
+    </div>
+  </div>
+</div>

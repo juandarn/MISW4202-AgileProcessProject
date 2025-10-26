@@ -1,0 +1,110 @@
+<app-encabezado></app-encabezado>
+
+<div class="chef-container" *ngIf="chefForm">
+  <h2 class="titulo">Editar chef</h2>
+
+  <form
+    [formGroup]="chefForm"
+    (ngSubmit)="!chefForm.invalid && editarChef(chefForm.value)"
+    class="formulario"
+  >
+    <!-- Nombre -->
+    <div class="form-group">
+      <label for="nombre">Nombre del chef</label>
+      <input
+        id="nombre"
+        class="form-control"
+        formControlName="nombre"
+        placeholder="Nombre"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="chefForm.get('nombre')!.hasError('required') && chefForm.get('nombre')!.touched"
+      >
+        Contenido requerido
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="chefForm.get('nombre')!.hasError('minlength')"
+      >
+        Mínimo dos caracteres
+      </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input
+        id="telefono"
+        class="form-control"
+        formControlName="telefono"
+        placeholder="Teléfono"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="chefForm.get('telefono')!.hasError('required') && chefForm.get('telefono')!.touched"
+      >
+        Contenido requerido
+      </div>
+    </div>
+
+    <!-- Correo -->
+    <div class="form-group">
+      <label for="correo">Correo</label>
+      <input
+        id="correo"
+        type="email"
+        class="form-control"
+        formControlName="correo"
+        placeholder="Correo electrónico"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="chefForm.get('correo')!.hasError('required') && chefForm.get('correo')!.touched"
+      >
+        Contenido requerido
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="chefForm.get('correo')!.hasError('email') && chefForm.get('correo')!.touched"
+      >
+        Correo no válido
+      </div>
+    </div>
+
+    <!-- Especialidad -->
+    <div class="form-group">
+      <label for="especialidad">Especialidad</label>
+      <input
+        id="especialidad"
+        class="form-control"
+        formControlName="especialidad"
+        placeholder="Especialidad"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="chefForm.get('especialidad')!.hasError('required') && chefForm.get('especialidad')!.touched"
+      >
+        Contenido requerido
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones mt-4">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!chefForm.valid"
+      >
+        Editar
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger ml-2"
+        (click)="cancelarChef()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

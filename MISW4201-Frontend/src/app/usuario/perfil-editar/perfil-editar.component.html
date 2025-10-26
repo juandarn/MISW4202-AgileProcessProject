@@ -1,0 +1,84 @@
+<app-encabezado></app-encabezado>
+
+<!-- Menú superior -->
+<div class="perfil-menu">
+  <button
+    class="menu-btn"
+    [ngClass]="{ 'active-perfil': modo === 'perfil' }"
+    (click)="modo = 'perfil'"
+  >
+    Editar Perfil
+  </button>
+  <button
+    class="menu-btn"
+    [ngClass]="{ 'active-restaurantes': modo === 'restaurantes' }"
+    (click)="modo = 'restaurantes'"
+  >
+    Administrar Restaurantes
+  </button>
+  <button class="menu-btn salir" (click)="cerrarSesion()">Cerrar Sesión</button>
+</div>
+
+
+
+<!-- === PERFIL === -->
+<div
+  class="perfil-container animate-fade-in"
+  *ngIf="perfil && modo === 'perfil'"
+>
+  <!-- Encabezado -->
+  <div class="perfil-header">
+    <h2>Perfil de {{ perfil.usuario }}</h2>
+    <span class="badge">{{ perfil.tipo | uppercase }}</span>
+  </div>
+
+  <!-- Formulario -->
+  <form
+    [formGroup]="perfilForm"
+    (ngSubmit)="guardarPerfil()"
+    class="perfil-form"
+  >
+    <div class="perfil-grid">
+      <!-- usuario y contraseña siempre -->
+      <div class="perfil-item">
+        <label>Usuario</label>
+        <input class="form-control" formControlName="usuario" />
+      </div>
+      <div class="perfil-item">
+        <label>Contraseña</label>
+        <input class="form-control" formControlName="pwd" type="password" />
+      </div>
+
+      <!-- campos que solo aplica a chefs -->
+      <ng-container *ngIf="perfil.tipo === 'chef'">
+        <div class="perfil-item" *ngFor="let campo of chefCampos">
+          <label>{{ campo.label }}</label>
+          <input
+            class="form-control"
+            [formControlName]="campo.control"
+            [type]="campo.type"
+          />
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones-centrados">
+      <button
+        type="submit"
+        class="btn-guardar"
+        [disabled]="perfilForm.invalid || !perfilForm.dirty"
+      >
+        Guardar cambios
+      </button>
+      <button type="button" class="btn-cancelar" (click)="cancelar()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- === RESTAURANTES === -->
+<div *ngIf="modo === 'restaurantes'">
+  <app-restaurante-listar></app-restaurante-listar>
+</div>

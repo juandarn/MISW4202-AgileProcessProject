@@ -1,0 +1,122 @@
+/* Contenedor principal */
+.restaurantes-container {
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Bienvenida */
+.bienvenida {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Encabezado */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.subtitulo {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Botón crear restaurante */
+.btn-crear {
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  padding: 0.45rem 1rem; 
+  border-radius: 8px; 
+  font-weight: 500;
+  font-size: 0.9rem; 
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(108, 99, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; 
+}
+
+.btn-crear:hover {
+  background-color: #5a52e0;
+  box-shadow: 0 3px 8px rgba(108, 99, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Grid de restaurantes */
+.restaurantes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Tarjeta restaurante */
+.restaurante-card {
+  background-color: #f7f5ff; 
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  border: 1px solid #e5e2ff;
+}
+
+.restaurante-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+  border-color: #6c63ff;
+}
+
+/* Imagen restaurante */
+.imagen-placeholder {
+  background-color: #eae7ff;
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Nombre y dirección */
+.nombre {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0.8rem 1rem 0.2rem;
+  color: #333;
+}
+
+.direccion {
+  margin: 0 1rem 1rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Divisor decorativo */
+.titulo-divider {
+  width: 60%;
+  margin: 12px auto;
+  border: 1px solid #6c63ff;
+  opacity: 0.4;
+}
+
+/* Marca visual cuando está seleccionado en modo selección */
+.restaurante-card.seleccionado {
+  outline: 3px solid #6c63ff33;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}

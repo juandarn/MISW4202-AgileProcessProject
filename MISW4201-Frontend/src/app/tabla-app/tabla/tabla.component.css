@@ -1,0 +1,104 @@
+::ng-deep .table-row-custom {
+  background-color: #faf7ff;
+}
+
+::ng-deep .table-row-custom:nth-child(even) {
+  background-color: #f5f2fc;
+}
+
+::ng-deep .btn-purpura {
+  background-color: #6c63ff;
+  border: none;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+::ng-deep .btn-purpura:hover {
+  background-color: #574dcf;
+}
+
+::ng-deep .text-purple {
+  color: #6c63ff;
+}
+
+::ng-deep .table .bi-pencil-square {
+  color: #6c63ff;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+::ng-deep .table .bi-pencil-square:hover {
+  color: #574dcf;
+}
+
+::ng-deep .table .bi-trash {
+  color: #c1121f;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+::ng-deep .table .bi-trash:hover {
+  color: #a00e1a;
+}
+
+::ng-deep .table th {
+  font-weight: 600;
+  color: #333;
+  background-color: #fff;
+  border-bottom: 2px solid #eee;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+::ng-deep .pagination .page-link {
+  color: #6c63ff;
+  border-radius: 6px;
+  margin: 0 2px;
+  font-size: 0.8rem;
+}
+
+::ng-deep .pagination .page-item.active .page-link {
+  background-color: #6c63ff;
+  border-color: #6c63ff;
+  color: #fff;
+}
+
+::ng-deep .pagination .page-link:hover {
+  background-color: #f0edff;
+  color: #574dcf;
+}
+
+::ng-deep .bg-purpura {
+  background-color: #6c63ff !important;
+}
+
+::ng-deep .bg-purpura .modal-title {
+  color: white !important;
+  font-weight: 600;
+}
+
+.calificacion-circle {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Colores por calificación */
+.c1 { background-color: #ff4d4f; }   /* 1 - rojo fuerte */
+.c2 { background-color: #ff7a45; }   /* 2 - naranja */
+.c3 { background-color: #ffa940; }   /* 3 - amarillo */
+.c4 { background-color: #52c41a; }   /* 4 - verde claro */
+.c5 { background-color: #237804; }   /* 5 - verde oscuro */
+

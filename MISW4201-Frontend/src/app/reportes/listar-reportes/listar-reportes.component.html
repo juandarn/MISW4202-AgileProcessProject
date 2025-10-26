@@ -1,0 +1,65 @@
+<app-encabezado></app-encabezado>
+
+<div class="container my-4">
+  <!-- Encabezado principal -->
+  <div class="text-center mb-4 encabezado-animado">
+    <h2 class="fw-bold text-primary">Reportes disponibles</h2>
+    <p class="text-muted mb-0">
+      Selecciona el tipo de reporte que deseas consultar. Podrás analizar el
+      <span class="fw-semibold"
+        >historial de precios de ingredientes por proveedor</span
+      >
+      o generar un
+      <span class="fw-semibold"
+        >reporte comparativo de proveedores para un ingrediente específico</span
+      >.
+    </p>
+  </div>
+
+  <!-- Botones de selección -->
+  <div class="d-flex flex-column flex-md-row justify-content-center gap-4">
+    <!-- Botón Historial de Precios -->
+    <button
+      data-testid="btn-historial"
+      (click)="mostrarHistorial()"
+      class="btn btn-light border shadow-sm py-3 px-4 rounded-3 d-flex flex-column align-items-center gap-2 hover-shadow btn-animado"
+      style="width: 260px"
+    >
+      <i
+        class="bi bi-bar-chart-line-fill text-primary"
+        style="font-size: 1.8rem"
+      ></i>
+      <span class="fw-semibold">Historial de precios</span>
+      <small class="text-muted text-center">
+        Consulta cómo han variado los precios de los ingredientes según los
+        proveedores a lo largo del tiempo.
+      </small>
+    </button>
+
+    <!-- Botón Ingrediente x Proveedor -->
+    <button
+      data-testid="btn-ingredientexproveedor"
+      (click)="mostrarIngredienteProveedor()"
+      class="btn btn-light border shadow-sm py-3 px-4 rounded-3 d-flex flex-column align-items-center gap-2 hover-shadow btn-animado"
+      style="width: 260px; animation-delay: 0.2s"
+    >
+      <i class="bi bi-people-fill text-danger" style="font-size: 1.8rem"></i>
+      <span class="fw-semibold">Ingredientes por proveedor</span>
+      <small class="text-muted text-center">
+        Genera un reporte de proveedores que ofrecen un ingrediente específico y
+        compáralos para elegir la mejor opción de compra.
+      </small>
+    </button>
+  </div>
+
+  <!-- Render condicional -->
+  <div class="mt-5 tabla-animada">
+    <app-tabla-historial-precios
+      *ngIf="reporteSeleccionado === 'historial'"
+    ></app-tabla-historial-precios>
+
+    <app-tabla-ingredientexproveedor
+      *ngIf="reporteSeleccionado === 'ingredientexproveedor'"
+    ></app-tabla-ingredientexproveedor>
+  </div>
+</div>

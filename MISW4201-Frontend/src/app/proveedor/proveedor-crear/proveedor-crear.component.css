@@ -1,0 +1,82 @@
+.proveedor-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 30px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.form-group .form-control {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #000;
+  border-radius: 6px;
+}
+
+.form-group .form-control:focus {
+  outline: none;
+  border-color: #69D7B8;
+}
+
+/* Botones */
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.btn-primary {
+  background-color: #8CFF82;
+  border: none;
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #00b894;
+}
+
+.btn-danger {
+  background-color: #ff7675;
+  border: none;
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-danger:hover {
+  background-color: #d63031;
+}
+
+/* Responsivo: en pantallas chicas se vuelve 1 columna */
+@media (max-width: 768px) {
+  .grid-form {
+    grid-template-columns: 1fr;
+  }
+}

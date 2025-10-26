@@ -1,0 +1,165 @@
+<app-encabezado></app-encabezado>
+
+<div class="receta-container" *ngIf="recetaForm">
+  <div class="receta-header">
+    <h2>{{ receta?.id ? "Editar receta" : "Agregar receta" }}</h2>
+  </div>
+
+  <form
+    [formGroup]="recetaForm"
+    (ngSubmit)="!recetaForm.invalid && editarReceta(recetaForm.value)"
+    class="formulario"
+  >
+    <!-- Grid de campos -->
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nombre">Nombre de la receta</label>
+        <input
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          placeholder="Ingrese el nombre"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            recetaForm.get('nombre')!.hasError('required') &&
+            recetaForm.get('nombre')!.touched
+          "
+        >
+          Contenido requerido
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="recetaForm.get('nombre')!.hasError('minlength')"
+        >
+          El contenido es muy corto, mínimo 2 caracteres
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="duracion">Tiempo de preparación (horas)</label>
+        <input
+          id="duracion"
+          type="number"
+          class="form-control"
+          formControlName="duracion"
+          placeholder="Tiempo de preparación"
+          step="0.01"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            recetaForm.get('duracion')!.hasError('required') &&
+            recetaForm.get('duracion')!.touched
+          "
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="preparacion">Preparación</label>
+        <textarea
+          id="preparacion"
+          class="form-control"
+          formControlName="preparacion"
+          placeholder="Preparación"
+          rows="8"
+        ></textarea>
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            recetaForm.get('preparacion')!.hasError('required') &&
+            recetaForm.get('preparacion')!.touched
+          "
+        >
+          Contenido requerido
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="recetaForm.get('preparacion')!.hasError('minlength')"
+        >
+          El contenido es muy corto, mínimo 2 caracteres
+        </div>
+      </div>
+    </div>
+
+    <!-- Ingredientes -->
+    <div class="ingredientes-container">
+      <div class="ingredientes-header">
+        <h6>Ingredientes y cantidad</h6>
+        <button
+          type="button"
+          class="btn-agregar"
+          (click)="adicionarIngrediente()"
+        >
+          + Agregar ingrediente
+        </button>
+      </div>
+
+      <ng-container formArrayName="ingredientes">
+        <ng-container
+          *ngFor="let lineaForm of ingredientesSubForm.controls; let i = index"
+        >
+          <div [formGroupName]="i" class="ingrediente-linea">
+            <select formControlName="idIngrediente" class="form-control">
+              <option [ngValue]="null" disabled>Elegir ingrediente</option>
+              <option
+                *ngFor="let ingrediente of getIngredientesDisponibles(i)"
+                [ngValue]="ingrediente.id"
+              >
+                {{ ingrediente.nombre }}
+              </option>
+            </select>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Cantidad"
+              step="0.01"
+              [value]="lineaForm.get('cantidad')?.value | number : '1.0-2'"
+              (input)="
+                lineaForm.get('cantidad')?.setValue($any($event.target).value)
+              "
+            />
+            <button
+              type="button"
+              class="btn-icon delete"
+              (click)="eliminarIngrediente(i)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                lineaForm.get('idIngrediente')!.hasError('required') &&
+                lineaForm.get('idIngrediente')!.touched
+              "
+            >
+              Contenido requerido
+            </div>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                lineaForm.get('cantidad')!.hasError('required') &&
+                lineaForm.get('cantidad')!.touched
+              "
+            >
+              Contenido requerido
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones-centrados">
+      <button type="submit" class="btn-guardar" [disabled]="!recetaForm.valid">
+        Guardar cambios
+      </button>
+      <button type="button" class="btn-cancelar" (click)="cancelarReceta()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

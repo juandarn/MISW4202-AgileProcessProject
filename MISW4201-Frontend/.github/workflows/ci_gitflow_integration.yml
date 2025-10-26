@@ -1,0 +1,43 @@
+name: CI - Gitflow Integration
+
+on:
+  push:
+    branches:
+      - main
+      - release
+      - develop
+      - feature/*
+  pull_request:
+    branches:
+      - main
+      - release
+      - develop
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Build project
+        run: npm run build -- --configuration=production
+
+      - name: Upload dist folder (build artifacts)
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-dist
+          path: dist/

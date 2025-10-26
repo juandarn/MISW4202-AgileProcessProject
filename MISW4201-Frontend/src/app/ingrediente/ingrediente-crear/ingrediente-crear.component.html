@@ -1,0 +1,51 @@
+<app-encabezado></app-encabezado>
+
+<div class="ingrediente-container">
+  <h2 class="titulo">Agregar ingrediente</h2>
+
+  <form
+    [formGroup]="ingredienteForm"
+    (ngSubmit)="!ingredienteForm.invalid && crearIngrediente(ingredienteForm.value)"
+    class="formulario"
+  >
+    <div class="form-group">
+      <label for="nombre">Nombre del ingrediente</label>
+      <input
+        id="nombre"
+        class="form-control"
+        formControlName="nombre"
+        placeholder="Nombre"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="ingredienteForm.get('nombre')!.hasError('required') && ingredienteForm.get('nombre')!.touched"
+      >
+        Contenido requerido
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="ingredienteForm.get('nombre')!.hasError('minlength')"
+      >
+        Mínimo dos caracteres
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones mt-3">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!ingredienteForm.valid"
+      >
+        Agregar
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger ml-2"
+        (click)="cancelarIngrediente()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

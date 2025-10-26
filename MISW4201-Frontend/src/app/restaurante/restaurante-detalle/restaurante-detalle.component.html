@@ -1,0 +1,37 @@
+<div class="detalle-restaurante" *ngIf="restaurante">
+  <!-- Información del restaurante -->
+  <div class="info">
+    <h1 class="nombre" (click)="verRestaurante()">
+      {{ restaurante.nombre }}
+    </h1>
+
+    <p><strong>Dirección:</strong> {{ restaurante.direccion }}</p>
+
+    <p><strong>Horario de atención:</strong></p>
+    <p class="horario">{{ restaurante.horario_atencion }}</p>
+
+    <p><strong>Tipo de comida:</strong> {{ restaurante.tipo_comida }}</p>
+
+    <p><strong>Teléfono:</strong> {{ restaurante.telefono }}</p>
+
+    <div class="acciones">
+      <button class="btn editar" (click)="editarRestaurante()">Editar</button>
+      <button
+        class="btn eliminar"
+        data-bs-toggle="modal"
+        data-bs-target="#confirmDeleteModal"
+      >
+        Eliminar
+      </button>
+    </div>
+  </div>
+
+  <!-- Imagen del restaurante -->
+  <div class="imagen" *ngIf="imagenPreview">
+    <img
+      [src]="imagenPreview"
+      alt="Foto del menú"
+      class="img-fluid rounded-3 shadow"
+    />
+  </div>
+</div>

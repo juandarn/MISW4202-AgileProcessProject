@@ -1,0 +1,215 @@
+/* ==========================================================================
+   Estilos para el componente MenuCrearComponent
+   --------------------------------------------------------------------------
+   Incluye estilos para títulos, formularios, botones, drag & drop de imagen,
+   previsualización de imagen, animaciones y personalización de colores.
+   ========================================================================== */
+
+/* --- Títulos --- */
+h2, h4 {
+  color: #000;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Sección: Recetas Header (Título y botón +)
+   ========================================================================== */
+.recetas-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 1rem;
+}
+.recetas-header h4 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
+.recetas-header .btn-receta-add {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ==========================================================================
+   Sección: Inputs y Selects
+   ========================================================================== */
+.form-control,
+.form-select {
+  border: 2px solid #e6e6f5;
+  border-radius: 8px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #574dcf;
+  box-shadow: 0 0 0 0.2rem rgba(87, 77, 207, 0.25);
+}
+
+/* ==========================================================================
+   Sección: Botones principales
+   ========================================================================== */
+/* Botón Guardar/Agregar */
+.btn-success {
+  background-color: #574dcf !important;
+  border-color: #574dcf !important;
+}
+.btn-success:hover {
+  background-color: #463cb5 !important;
+  border-color: #463cb5 !important;
+}
+/* Botón Cancelar */
+.btn-danger {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+.btn-danger:hover {
+  background-color: #b52d39 !important;
+  border-color: #b52d39 !important;
+}
+/* Botón + (agregar receta) */
+.btn-receta-add {
+  background-color: #574dcf;
+  border: none;
+  color: white;
+  border-radius: 50% !important;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+.btn-receta-add:hover {
+  background-color: #463cb5;
+}
+
+/* ==========================================================================
+   Sección: Área de foto con drag & drop
+   ========================================================================== */
+.upload-zone {
+  border: 2px dashed #574dcf;
+  background: #fafaff;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+.upload-zone:hover {
+  background: #f1f0ff;
+}
+/* Cuando ya hay imagen: quitar borde y fondo */
+.upload-zone.with-image {
+  border: none !important;
+  background: transparent;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Sección: Input de archivo personalizado
+   ========================================================================== */
+input[type="file"]::file-selector-button {
+  background-color: #574dcf;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+input[type="file"]::file-selector-button:hover {
+  background-color: #463cb5;
+}
+
+/* ==========================================================================
+   Sección: Previsualización de imagen y botón eliminar
+   ========================================================================== */
+.preview-container {
+  position: relative;
+  display: inline-block;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.img-thumbnail {
+  border-radius: 12px;
+  max-width: 200px;
+  max-height: 220px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+.img-thumbnail.clickable-img {
+  max-height: 300px;
+  max-width: 100%;
+  cursor: pointer;
+}
+.btn-remove-img {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #dc3545;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: background 0.2s ease;
+}
+.btn-remove-img:hover {
+  background: #b52d39;
+}
+
+/* ==========================================================================
+   Sección: Animaciones
+   ========================================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+.animate-fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+/* ==========================================================================
+   Sección: Utilidades y colores personalizados
+   ========================================================================== */
+.text-purpura {
+  color: #6c63ff;
+}
+::ng-deep .btn-foto {
+  background-color: #6c63ff;
+  border: none;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  gap: 6px;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+::ng-deep .btn-foto:hover,
+::ng-deep .btn-foto:focus,
+::ng-deep .btn-foto:active {
+  background-color: #574dcf !important;
+  color: white !important;
+}
+
+/* ==========================================================================
+   Fin de los estilos del componente MenuCrearComponent
+   ========================================================================== */

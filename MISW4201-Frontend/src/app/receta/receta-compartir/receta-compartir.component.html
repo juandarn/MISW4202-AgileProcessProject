@@ -1,0 +1,33 @@
+<app-encabezado></app-encabezado>
+
+<div class="compartir-container">
+  <div class="topbar">
+    <h2>Compartir receta</h2>
+    <div class="acciones">
+      <button class="btn-cancelar" type="button" (click)="cancelar()">Cancelar</button>
+      <button
+        class="btn-guardar"
+        type="button"
+        [disabled]="!seleccionado || cargando"
+        (click)="compartir()"
+      >
+        {{ cargando ? 'Compartiendo…' : 'Compartir' }}
+      </button>
+    </div>
+  </div>
+
+  <p class="ayuda">Selecciona un restaurante para compartir esta receta.</p>
+
+  <app-restaurante-listar
+    [modoSeleccion]="true"
+    [titulo]="'Restaurantes'"
+    [subtitulo]="'Elige un restaurante para compartir la receta'"
+    (seleccionar)="onSeleccionRestaurante($event)"
+    [mostrarEncabezado]="false"
+  ></app-restaurante-listar>
+
+  <div class="seleccion-resumen" *ngIf="seleccionado">
+    <span>Seleccionado:</span>
+    <strong>{{ seleccionado?.nombre }}</strong>
+  </div>
+</div>

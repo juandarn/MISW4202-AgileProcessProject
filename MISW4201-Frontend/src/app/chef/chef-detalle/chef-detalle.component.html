@@ -1,0 +1,45 @@
+<app-encabezado></app-encabezado>
+
+<div class="container mt-4">
+  <!-- Título del chef -->
+  <div class="text-center mb-4">
+    <h2 class="titulo-chef">
+      <i class="bi bi-person-badge-fill me-2"></i>
+      Detalle del chef:
+      <span class="nombre-chef">{{ chef?.nombre }}</span>
+    </h2>
+    <hr class="titulo-divider" />
+  </div>
+
+  <!-- Información básica del chef -->
+  <div class="card shadow-sm mb-4 border-0 rounded-3">
+    <div class="card-body">
+      <table class="table table-hover align-middle mb-0">
+        <tbody>
+          <tr>
+            <th class="text-end text-muted w-25">Teléfono:</th>
+            <td>
+              <span class="fw-semibold text-dark">
+                {{ chef?.telefono }}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-end text-muted w-25">Correo:</th>
+            <td>
+              <span class="fw-semibold text-dark">{{ chef?.correo }}</span>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-end text-muted w-25">Especialidad:</th>
+            <td>
+              <span class="badge bg-purpura fs-6 px-3 py-2 rounded-pill">
+                {{ chef?.especialidad }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

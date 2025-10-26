@@ -1,0 +1,18 @@
+.text-custom-primary {
+  color: #574dcf !important;
+}
+
+
+.badge-custom-primary {
+  background-color: #eeedfb !important;
+  color: #574dcf !important;
+}
+
+.bg-custom-primary {
+  background-color: #574dcf; /* mismo morado que text-custom-primary */
+  transition: background-color 0.3s;
+}
+
+.bg-custom-primary:hover {
+  background-color: #433bb0; /* morado más oscuro al pasar el mouse */
+}

@@ -1,0 +1,128 @@
+<app-encabezado></app-encabezado>
+
+<div class="proveedor-container" *ngIf="proveedorForm">
+  <div class="proveedor-header">
+    <h2>{{ proveedor?.id ? 'Editar proveedor' : 'Agregar proveedor' }}</h2>
+  </div>
+
+  <form
+    [formGroup]="proveedorForm"
+    (ngSubmit)="!proveedorForm.invalid && editarProveedor(proveedorForm.value)"
+    class="formulario"
+  >
+    <!-- Grid de campos -->
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nombre">Nombre del proveedor</label>
+        <input
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          placeholder="Ingrese el nombre"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('nombre')!.hasError('required') && proveedorForm.get('nombre')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cedula">NIT / Cédula</label>
+        <input
+          id="cedula"
+          class="form-control"
+          formControlName="cedula"
+          placeholder="Cédula o NIT"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('cedula')!.hasError('required') && proveedorForm.get('cedula')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          id="telefono"
+          class="form-control"
+          formControlName="telefono"
+          placeholder="Número de contacto"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="correo">Correo</label>
+        <input
+          id="correo"
+          type="email"
+          class="form-control"
+          formControlName="correo"
+          placeholder="Correo electrónico"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input
+          id="direccion"
+          class="form-control"
+          formControlName="direccion"
+          placeholder="Dirección"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="calificacion">Calificación</label>
+        <input
+          id="calificacion"
+          type="number"
+          class="form-control"
+          formControlName="calificacion"
+          placeholder="Calificación"
+        />
+      </div>
+    </div>
+
+    <!-- Ingredientes -->
+    <div class="ingredientes-container">
+      <div class="ingredientes-header">
+        <h6>Ingredientes, Precio y Cantidad</h6>
+        <button type="button" class="btn-agregar" (click)="adicionarIngrediente()">
+          + Agregar ingrediente
+        </button>
+      </div>
+
+      <ng-container formArrayName="ingredientes">
+        <ng-container *ngFor="let lineaForm of ingredientesSubForm.controls; let i = index">
+          <div [formGroupName]="i" class="ingrediente-linea">
+            <select formControlName="idIngrediente" class="form-control">
+              <option [ngValue]="null" disabled>Elegir ingrediente</option>
+              <option *ngFor="let ingrediente of getIngredientesDisponibles(i)" [ngValue]="ingrediente.id">
+                {{ ingrediente.nombre }}
+              </option>
+            </select>
+            <input type="number" formControlName="precio" placeholder="Precio" class="form-control" />
+            <input type="number" formControlName="cantidad" placeholder="Cantidad" class="form-control" />
+            <button type="button" class="btn-icon delete" (click)="eliminarIngrediente(i)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones-centrados">
+      <button type="submit" class="btn-guardar" [disabled]="!proveedorForm.valid">
+        Guardar cambios
+      </button>
+      <button type="button" class="btn-cancelar" (click)="cancelarProveedor()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

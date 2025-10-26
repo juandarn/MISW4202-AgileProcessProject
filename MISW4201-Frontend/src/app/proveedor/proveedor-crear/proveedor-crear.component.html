@@ -1,0 +1,147 @@
+<app-encabezado></app-encabezado>
+
+<div class="proveedor-container">
+  <h2 class="titulo">Nuevo proveedor</h2>
+
+  <form
+    [formGroup]="proveedorForm"
+    (ngSubmit)="!proveedorForm.invalid && crearProveedor(proveedorForm.value)"
+    class="formulario"
+  >
+    <div class="grid-form">
+      <!-- Cédula -->
+      <div class="form-group">
+        <label for="cedula">NIT/CC</label>
+        <input
+          id="cedula"
+          class="form-control"
+          formControlName="cedula"
+          placeholder="Cédula / NIT"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('cedula')!.hasError('required') && proveedorForm.get('cedula')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <!-- Nombre -->
+      <div class="form-group">
+        <label for="nombre">Nombre del proveedor</label>
+        <input
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          placeholder="Nombre"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('nombre')!.hasError('required') && proveedorForm.get('nombre')!.touched"
+        >
+          Contenido requerido
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('nombre')!.hasError('minlength')"
+        >
+          Mínimo dos caracteres
+        </div>
+      </div>
+
+      <!-- Dirección -->
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input
+          id="direccion"
+          class="form-control"
+          formControlName="direccion"
+          placeholder="Dirección"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('direccion')!.hasError('required') && proveedorForm.get('direccion')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <!-- Teléfono -->
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          id="telefono"
+          class="form-control"
+          formControlName="telefono"
+          placeholder="Teléfono"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('telefono')!.hasError('required') && proveedorForm.get('telefono')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <!-- Correo -->
+      <div class="form-group">
+        <label for="correo">Correo</label>
+        <input
+          id="correo"
+          type="email"
+          class="form-control"
+          formControlName="correo"
+          placeholder="Correo"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('correo')!.hasError('required') && proveedorForm.get('correo')!.touched"
+        >
+          Contenido requerido
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('correo')!.hasError('email')"
+        >
+          Correo inválido
+        </div>
+      </div>
+
+      <!-- Calificación -->
+      <div class="form-group">
+        <label for="calificacion">Calificación</label>
+        <select
+          id="calificacion"
+          class="form-control"
+          formControlName="calificacion"
+        >
+          <option *ngFor="let c of [1,2,3,4,5]" [value]="c">{{c}}</option>
+        </select>
+        <div
+          class="alert alert-danger"
+          *ngIf="proveedorForm.get('calificacion')!.hasError('required') && proveedorForm.get('calificacion')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones mt-3">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!proveedorForm.valid"
+      >
+        Agregar
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger ml-2"
+        (click)="cancelarProveedor()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

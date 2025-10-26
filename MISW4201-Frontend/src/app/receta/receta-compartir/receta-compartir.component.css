@@ -1,0 +1,44 @@
+.compartir-container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.table-responsive {
+  border-radius: 8px;
+}
+
+.table tbody tr.selected {
+  background: #e9f7ef;
+}
+
+.acciones {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Botones (reutiliza tu estilo) */
+.btn-guardar {
+  background-color: #8CFF82;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-guardar:hover { background-color: #00b894; }
+
+.btn-cancelar {
+  background-color: #ff7675;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-cancelar:hover { background-color: #d63031; }

@@ -1,0 +1,102 @@
+.table thead.table-gradient {
+  background: linear-gradient(90deg,#6c63ff,#6c63ff) !important;
+  color: #fff !important;
+}
+
+.table thead.table-gradient th {
+  background: transparent !important;
+  color: #fff !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.custom-table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+  background-color: #e3f2fd;
+  box-shadow: inset 0 0 8px rgba(13, 110, 253, 0.25);
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.search-box {
+  min-width: 280px;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.pagination .page-link {
+  border-radius: 8px;
+  margin: 0 2px;
+  transition: all 0.2s;
+}
+
+.pagination .page-link:hover {
+  background-color:#6c63ff;
+  color: white;
+}
+
+.pagination .active .page-link {
+  background-color: #6c63ff;
+  border-color:#6c63ff;
+  color: #fff;
+  font-weight: bold;
+}
+
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+th.sortable span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+th.sortable i {
+  font-size: 0.85rem;
+  color: #fff;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+th.sortable i.bi-caret-up-fill {
+  transform: translateY(-1px);
+}
+
+th.sortable i.bi-caret-down-fill {
+  transform: translateY(1px);
+}
+
+th.sortable:hover i {
+  transform: translateY(0) scale(1.06);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.calificacion-badge {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.calificacion-badge.rojo { background-color: #dc3545; }      /* 1-2 */
+.calificacion-badge.naranja { background-color: #fd7e14; }  /* 3 */
+.calificacion-badge.amarillo { background-color: #ffc107; }  /* 4 */
+.calificacion-badge.verde { background-color: #28a745; }    /* 5 */
+
+.text-primary {
+  color: #6c63ff !important;
+}

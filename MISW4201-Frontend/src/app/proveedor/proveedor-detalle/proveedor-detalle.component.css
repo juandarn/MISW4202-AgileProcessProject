@@ -1,0 +1,61 @@
+/* Título principal */
+.titulo-proveedor {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nombre-proveedor {
+  color: #6c63ff;
+  font-weight: 800;
+  margin-left: 5px;
+}
+
+.titulo-divider {
+  width: 60%;
+  margin: 12px auto;
+  border: 1px solid #6c63ff;
+  opacity: 0.4;
+}
+
+/* Hover fila */
+.table-row-custom:hover {
+  background-color: #f0edff;
+  cursor: pointer;
+}
+
+/* Calificación circular */
+.calificacion-circle {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Colores de calificación */
+.c1 { background-color: #ff4d4f; }
+.c2 { background-color: #ff7a45; }
+.c3 { background-color: #ffa940; }
+.c4 { background-color: #52c41a; }
+.c5 { background-color: #237804; }
+
+/* Texto púrpura */
+.text-purple {
+  color: #6c63ff !important;
+}
+
+/* Contenedor de la tabla */
+.tabla {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 10px;
+}

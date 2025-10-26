@@ -1,0 +1,125 @@
+
+<div class="restaurante-container" *ngIf="restauranteForm">
+  <!-- Encabezado -->
+  <div class="restaurante-header">
+    <h2>{{ restaurante?.id ? 'Editar restaurante' : 'Agregar restaurante' }}</h2>
+  </div>
+
+  <form
+    [formGroup]="restauranteForm"
+    (ngSubmit)="!restauranteForm.invalid && editarRestaurante()"
+    class="formulario"
+  >
+    <!-- Grid de campos -->
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nombre">Nombre del restaurante</label>
+        <input id="nombre" class="form-control" formControlName="nombre" placeholder="Ingrese el nombre" />
+        <div class="alert alert-danger"
+             *ngIf="restauranteForm.get('nombre')!.hasError('required') && restauranteForm.get('nombre')!.touched">
+          Contenido requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input id="direccion" class="form-control" formControlName="direccion" placeholder="Dirección" />
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" class="form-control" formControlName="telefono" placeholder="Teléfono" />
+      </div>
+
+      <div class="form-group">
+        <label for="horario_atencion">Horario de atención</label>
+        <input id="horario_atencion" class="form-control" formControlName="horario_atencion"
+               placeholder="Ej: Lunes a Viernes 08:00 - 17:00" />
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_comida">Tipo de comida</label>
+        <select id="tipo_comida" class="form-control" formControlName="tipo_comida">
+          <option value="">Seleccione</option>
+          <option *ngFor="let tipo of tiposComida" [value]="tipo">{{ tipo }}</option>
+        </select>
+      </div>
+    </div>
+
+<div class="col-12">
+  <label class="form-label">Foto</label>
+  <div class="upload-zone text-center bg-light"
+       [ngClass]="{ 'with-image': imagenPreview }"
+       (drop)="manejarDrop($event)"
+       (dragover)="permitirDrop($event)">
+
+    <ng-container *ngIf="!imagenPreview; else vistaImagen">
+      <i class="bi bi-cloud-upload fs-1 text-purpura"></i>
+      <p class="mt-2 mb-2">Arrastra y suelta una imagen aquí o</p>
+      <input type="file" (change)="manejarArchivo($event)" hidden #fileInput>
+      <button type="button" class="btn btn-foto" (click)="fileInput.click()">
+        Seleccionar archivo
+      </button>
+    </ng-container>
+
+    <ng-template #vistaImagen>
+      <div class="preview-container animate-fade-in">
+          <img *ngIf="imagenPreview"
+     [src]="imagenPreview"
+     alt="Vista previa"
+     class="img-thumbnail shadow-lg" />
+        <button type="button" class="btn-remove-img" (click)="eliminarImagen()">✕</button>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+
+    <!-- Sección Chefs -->
+    <h3 class="mt-3 mb-2">Chefs</h3>
+
+    <!-- Buscador -->
+    <div class="search-bar" style="display:flex; gap:8px; align-items:center; margin:8px 0 12px;">
+      <i class="bi bi-search"></i>
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="chefSearch"
+        placeholder="Buscar por nombre, especialidad o correo..."
+      />
+    </div>
+
+    <!-- Chips (seleccionados) -->
+    <div class="chips" *ngIf="selectedChefs.length > 0; else noSeleccionados">
+      <span class="chip" *ngFor="let c of selectedChefs">
+        {{ c.nombre }}
+        <button type="button" class="chip-close" (click)="removeChef(c.id)" aria-label="Quitar">×</button>
+      </span>
+    </div>
+    <ng-template #noSeleccionados>
+      <div class="alert alert-info">No hay chefs asignados aún.</div>
+    </ng-template>
+
+    <div class="line"></div>
+
+    <!-- Tabla SIEMPRE visible con no-seleccionados -->
+    <tabla-app
+      [columnas]="colsChefsTabla"
+      [datos]="tableChefs"
+      [mostrarBotonCrear]="false"
+      (accion)="onTablaAccion($event)"
+      [mostrarBotonCrear]="false"
+      [mostrarBotonEliminar]="false"
+    ></tabla-app>
+
+    <!-- Botones -->
+    <div class="botones-centrados">
+      <button type="submit" class="btn-guardar" [disabled]="!restauranteForm.valid">
+        Guardar cambios
+      </button>
+      <button type="button" class="btn-cancelar" (click)="cancelarRestaurante()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

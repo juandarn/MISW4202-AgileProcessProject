@@ -1,0 +1,92 @@
+<app-encabezado></app-encabezado>
+
+<div class="container mt-4">
+  <!-- Título del proveedor -->
+  <div class="text-center mb-4">
+    <h2 class="titulo-proveedor">
+      <i class="bi bi-person-badge-fill me-2"></i>
+      Detalle del proveedor:
+      <span class="nombre-proveedor">{{ proveedor?.nombre }}</span>
+    </h2>
+    <hr class="titulo-divider" />
+  </div>
+
+  <!-- Información básica del proveedor -->
+  <div class="card shadow-sm mb-4 border-0 rounded-3">
+    <div class="card-body">
+      <table class="table table-hover align-middle mb-0">
+        <tbody>
+          <tr>
+            <th class="text-end text-muted w-25">Cédula:</th>
+            <td>
+              <span class="fw-semibold text-dark">{{ proveedor?.cedula }}</span>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-end text-muted">Teléfono:</th>
+            <td>
+              <span class="fw-semibold text-dark">{{ proveedor?.telefono }}</span>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-end text-muted">Correo:</th>
+            <td>
+              <span class="fw-semibold text-dark">{{ proveedor?.correo }}</span>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-end text-muted">Dirección:</th>
+            <td>
+              <span class="fw-semibold text-dark">{{ proveedor?.direccion }}</span>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-end text-muted">Calificación:</th>
+            <td>
+              <span
+                class="calificacion-circle"
+                [ngClass]="getColor(proveedor?.calificacion)"
+              >
+                {{ proveedor?.calificacion }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Ingredientes que provee -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-semibold text-purple">
+      Ingredientes que provee este proveedor
+    </h5>
+  </div>
+
+  <!-- Tabla de ingredientes -->
+  <div class="tabla">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Precio/unidad</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let ingProv of proveedor?.ingredientes"
+          class="table-row-custom"
+        >
+          <td>{{ ingProv.ingrediente.nombre }}</td>
+          <td>
+            <span class="fw-semibold text-purple">
+              ${{ ingProv.precio | number: '1.2-2' }}
+            </span>
+          </td>
+          <td class="text-center">{{ ingProv.cantidad }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="login-container">
+  <div class="text-center mb-4">
+    <h1 class="titulo">Recetario</h1>
+    <p class="subtitulo">Comer mejor es vivir mejor</p>
+  </div>
+
+  <div class="login-card">
+    <h2 class="text-center mb-4">Registro</h2>
+
+    <form [formGroup]="usuarioForm" (ngSubmit)="registrarUsuario()">
+
+      <!-- Usuario -->
+      <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person"></i></span>
+          <input formControlName="usuario" type="text" class="form-control" placeholder="Usuario">
+        </div>
+        <div class="alert alert-danger mt-2"
+          *ngIf="usuarioForm.get('usuario')?.hasError('required') && usuarioForm.get('usuario')?.touched">
+          Debe ingresar un usuario para registrarse
+        </div>
+        <div class="alert alert-danger mt-2" *ngIf="usuarioForm.get('usuario')?.hasError('maxlength')">
+          El usuario no debe exceder los 50 caracteres
+        </div>
+      </div>
+
+      <!-- Nombre -->
+      <div class="mb-3">
+        <label class="form-label">Nombre completo</label>
+        <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre del chef">
+        <div class="alert alert-danger mt-2"
+          *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
+          Debe ingresar un nombre
+        </div>
+      </div>
+
+      <!-- Correo -->
+      <div class="mb-3">
+        <label class="form-label">Correo electrónico</label>
+        <input formControlName="correo" type="email" class="form-control" placeholder="ejemplo@correo.com">
+        <div class="alert alert-danger mt-2"
+          *ngIf="usuarioForm.get('correo')?.hasError('required') && usuarioForm.get('correo')?.touched">
+          Debe ingresar un correo
+        </div>
+        <div class="alert alert-danger mt-2"
+          *ngIf="usuarioForm.get('correo')?.hasError('email') && usuarioForm.get('correo')?.touched">
+          Debe ingresar un correo válido
+        </div>
+      </div>
+
+      <!-- Teléfono -->
+      <div class="mb-3">
+        <label class="form-label">Teléfono</label>
+        <input formControlName="telefono" type="text" class="form-control" placeholder="Teléfono">
+      </div>
+
+      <!-- Especialidad -->
+      <div class="mb-3">
+        <label class="form-label">Especialidad</label>
+        <input formControlName="especialidad" type="text" class="form-control" placeholder="Especialidad del chef">
+      </div>
+
+      <!-- Contraseña -->
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input formControlName="password" type="password" class="form-control" placeholder="********">
+        <div class="alert alert-danger mt-2"
+          *ngIf="usuarioForm.get('password')?.hasError('required') && usuarioForm.get('password')?.touched">
+          Debe ingresar una contraseña
+        </div>
+        <div class="alert alert-danger mt-2" *ngIf="usuarioForm.get('password')?.hasError('maxlength')">
+          La contraseña no debe exceder los 50 caracteres
+        </div>
+        <div class="alert alert-danger mt-2" *ngIf="usuarioForm.get('password')?.hasError('minlength')">
+          La contraseña debe tener más de 4 caracteres
+        </div>
+      </div>
+
+      <!-- Confirmar Contraseña -->
+      <div class="mb-3">
+        <label class="form-label">Confirmar contraseña</label>
+        <input formControlName="confirmPassword" type="password" class="form-control" placeholder="********">
+        <div class="alert alert-danger mt-2"
+          *ngIf="usuarioForm.get('confirmPassword')?.hasError('required') && usuarioForm.get('confirmPassword')?.touched">
+          Debe confirmar la contraseña
+        </div>
+        <div class="alert alert-danger mt-2"
+          *ngIf="usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value && usuarioForm.get('confirmPassword')?.touched">
+          Las contraseñas no coinciden
+        </div>
+      </div>
+
+      <!-- Botón -->
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary w-100"
+          [disabled]="!usuarioForm.valid || usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value">
+          Registrarse
+        </button>
+      </div>
+
+    <div class="text-center mt-3">
+      <small>¿Ya tienes cuenta? <a href="/">Inicia sesión</a></small>
+    </div>
+
+    </form>
+  </div>
+</div>

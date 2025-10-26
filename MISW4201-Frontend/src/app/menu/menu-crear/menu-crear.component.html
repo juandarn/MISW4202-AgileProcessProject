@@ -1,0 +1,125 @@
+<!--
+  Componente: Crear Menú
+  Descripción: Formulario para crear un nuevo menú, incluyendo nombre, fechas, descripción, foto y recetas asociadas.
+-->
+
+<app-encabezado></app-encabezado>
+
+<div class="container mt-4">
+  <h2 class="text-center fw-bold mb-4">Nuevo menú</h2>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Formulario de creación de menú -->
+  <form [formGroup]="menuForm" class="row g-3">
+
+    <!-- Nombre del menú -->
+    <div class="col-md-12">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-control" formControlName="nombre" placeholder="Ingrese el nombre del menú">
+    </div>
+
+
+    <!-- Fecha de inicio -->
+    <div class="col-md-6">
+      <label class="form-label">Fecha de inicio</label>
+      <input type="date" class="form-control" formControlName="fechainicio" placeholder="Seleccione la fecha de inicio">
+    </div>
+
+    <!-- Fecha de fin -->
+    <div class="col-md-6">
+      <label class="form-label">Fecha de fin</label>
+      <input type="date" class="form-control" formControlName="fechafin" placeholder="Seleccione la fecha de fin">
+    </div>
+
+    <!-- Descripción del menú -->
+    <div class="col-12">
+      <label class="form-label">Descripción</label>
+      <textarea class="form-control" formControlName="descripcion" placeholder="Ingrese una descripción del menú"></textarea>
+    </div>
+
+    <!-- Foto con drag & drop -->
+    <div class="col-12">
+      <label class="form-label">Foto</label>
+      <div class="upload-zone text-center bg-light"
+           [ngClass]="{ 'with-image': imagenPreview }"
+           (drop)="manejarDrop($event)"
+           (dragover)="permitirDrop($event)">
+
+        <!-- Input de archivo (solo si no hay imagen seleccionada) -->
+        <ng-container *ngIf="!imagenPreview; else vistaImagen">
+          <i class="bi bi-cloud-upload fs-1 text-purpura"></i>
+          <p class="mt-2 mb-2">Arrastra y suelta una imagen aquí o</p>
+          <input type="file" (change)="manejarArchivo($event)" hidden #fileInput>
+          <button type="button" class="btn btn-foto" (click)="fileInput.click()">
+            Seleccionar archivo
+          </button>
+        </ng-container>
+
+        <!-- Vista previa de la imagen seleccionada -->
+        <ng-template #vistaImagen>
+          <div class="preview-container animate-fade-in">
+            <a [href]="imagenPreview" target="_blank">
+              <img [src]="imagenPreview" alt="Vista previa" class="img-thumbnail shadow-lg clickable-img">
+            </a>
+            <button type="button" class="btn-remove-img" (click)="eliminarImagen()">✕</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Sección de recetas asociadas al menú -->
+    <div class="col-12 mt-4">
+      <div class="recetas-header d-flex align-items-center justify-content-between">
+        <h4 class="fw-bold mb-0">Recetas</h4>
+        <button type="button" class="btn-receta-add" (click)="agregarReceta()">+</button>
+      </div>
+      <div formArrayName="recetas">
+        <div *ngFor="let receta of recetas.controls; let i = index"
+             [formGroupName]="i" class="row g-2 align-items-center mb-2">
+
+          <!-- Selección de receta -->
+          <div class="col-md-6">
+            <select class="form-select" formControlName="idReceta">
+              <option [ngValue]="null" disabled selected>Seleccione una receta</option>
+              <option *ngFor="let r of recetasDisponibles" [value]="r.id">
+                {{ r.nombre }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Número de personas -->
+          <div class="col-md-4">
+            <input type="number" class="form-control" formControlName="personas" placeholder="Número de personas">
+          </div>
+
+          <!-- Botón para eliminar receta -->
+          <div class="col-md-2 text-end">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="eliminarReceta(i)">✕</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="col-12 text-center mt-4">
+      <button type="button" class="btn btn-success me-2" (click)="agregar()">Agregar</button>
+      <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div #successToast class="toast align-items-center text-bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body">
+        ✅ Menú creado con éxito
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>

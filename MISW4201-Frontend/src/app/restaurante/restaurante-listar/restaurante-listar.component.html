@@ -1,0 +1,42 @@
+<app-encabezado *ngIf="mostrarEncabezado"></app-encabezado>
+
+<div class="restaurantes-container">
+  <!-- Encabezado -->
+  <div class="header">
+    <div>
+      <h2 class="titulo">{{ titulo }}</h2>
+      <p class="subtitulo">{{ subtitulo }}</p>
+    </div>
+
+
+    <button
+      class="btn-crear"
+      *ngIf="!modoSeleccion && !isChef"
+      (click)="crearRestaurante()"
+    >
+      Crear Restaurante
+    </button>
+  </div>
+
+  <!-- Lista de restaurantes -->
+  <div class="restaurantes-grid">
+    <div
+      class="restaurante-card"
+      *ngFor="let restaurante of restaurantes"
+      (click)="clickCard(restaurante)"
+      [class.seleccionado]="isSeleccionado(restaurante)"
+      style="cursor: pointer"
+    >
+      <div class="imagen" *ngIf="restaurante.foto">
+        <img
+          [src]="'data:image/png;base64,' + restaurante.foto"
+          alt="Foto del menú"
+          class="img-fluid rounded-3 shadow"
+        />
+      </div>
+
+      <h3 class="nombre">{{ restaurante.nombre }}</h3>
+      <p class="direccion">{{ restaurante.direccion }}</p>
+    </div>
+  </div>
+</div>

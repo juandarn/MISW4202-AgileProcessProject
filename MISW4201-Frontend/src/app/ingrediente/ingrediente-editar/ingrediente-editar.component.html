@@ -1,0 +1,83 @@
+<app-encabezado></app-encabezado>
+
+<div class="ingrediente-container" *ngIf="ingredienteForm">
+  <h2 class="titulo">Editar ingrediente</h2>
+
+  <form
+    [formGroup]="ingredienteForm"
+    (ngSubmit)="!ingredienteForm.invalid && editarIngrediente(ingredienteForm.value)"
+    class="formulario"
+  >
+    <div class="form-group">
+      <label for="nombre">Nombre del ingrediente</label>
+      <input
+        id="nombre"
+        class="form-control"
+        formControlName="nombre"
+        placeholder="Nombre"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="ingredienteForm.get('nombre')!.hasError('required') && ingredienteForm.get('nombre')!.touched"
+      >
+        Contenido requerido
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="ingredienteForm.get('nombre')!.hasError('minlength')"
+      >
+        Mínimo dos caracteres
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="proveedor">Proveedor</label>
+
+      <select
+        id="proveedor"
+        class="form-control"
+        formControlName="proveedorId"
+      >
+        <option value="">Seleccione un proveedor</option>
+        <option *ngFor="let prov of proveedores" [value]="prov.id">
+          {{ prov.nombre }} 
+        </option>
+      </select>
+
+      <div class="mt-2 text-center">
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-success"
+          (click)="seleccionarMasBarato()"
+        >
+          Elegir más barato
+        </button>
+      </div>
+
+      <div
+        class="alert alert-danger"
+        *ngIf="ingredienteForm.get('proveedorId')!.hasError('required') && ingredienteForm.get('proveedorId')!.touched"
+      >
+        Debe seleccionar un proveedor
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones mt-4">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!ingredienteForm.valid"
+      >
+        Editar
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger ml-2"
+        (click)="cancelarIngrediente()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

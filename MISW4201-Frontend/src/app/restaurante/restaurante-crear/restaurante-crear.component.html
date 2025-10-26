@@ -1,0 +1,153 @@
+<div class="restaurante-container">
+
+  <form
+    [formGroup]="restauranteForm"
+    (ngSubmit)="!restauranteForm.invalid && crearRestaurante()"
+    class="formulario"
+  >
+    <div class="grid-form">
+      <!-- Nombre -->
+      <div class="form-group">
+        <label for="nombre">Nombre del restaurante</label>
+        <input
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          placeholder="Ej: Parrilla Los Llanos"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="restauranteForm.get('nombre')!.hasError('required') && restauranteForm.get('nombre')!.touched"
+        >
+          Contenido requerido
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="restauranteForm.get('nombre')!.hasError('minlength')"
+        >
+          Mínimo dos caracteres
+        </div>
+      </div>
+
+      <!-- Dirección -->
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input
+          id="direccion"
+          class="form-control"
+          formControlName="direccion"
+          placeholder="Ej: Calle 123 #45-67, Bogotá"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="restauranteForm.get('direccion')!.hasError('required') && restauranteForm.get('direccion')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <!-- Teléfono -->
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          id="telefono"
+          class="form-control"
+          formControlName="telefono"
+          placeholder="Ej: +57 310 456 7890"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="restauranteForm.get('telefono')!.hasError('required') && restauranteForm.get('telefono')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <!-- Horario -->
+      <div class="form-group">
+        <label for="horario_atencion">Horario de atención</label>
+        <input
+          id="horario_atencion"
+          class="form-control"
+          formControlName="horario_atencion"
+          placeholder="Ej: Lunes a Viernes 08:00 - 17:00"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="restauranteForm.get('horario_atencion')!.hasError('required') && restauranteForm.get('horario_atencion')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+      <!-- Tipo de comida -->
+      <div class="form-group">
+        <label for="tipo_comida">Tipo de comida</label>
+        <select
+          id="tipo_comida"
+          class="form-control"
+          formControlName="tipo_comida"
+        >
+          <option value="">Seleccione</option>
+          <option *ngFor="let tipo of tiposComida" [value]="tipo">
+            {{ tipo }}
+          </option>
+        </select>
+        <div
+          class="alert alert-danger"
+          *ngIf="restauranteForm.get('tipo_comida')!.hasError('required') && restauranteForm.get('tipo_comida')!.touched"
+        >
+          Contenido requerido
+        </div>
+      </div>
+    </div>
+
+        <!-- Foto con drag & drop -->
+    <div class="col-12">
+      <label class="form-label">Foto</label>
+      <div class="upload-zone text-center bg-light"
+           [ngClass]="{ 'with-image': imagenPreview }"
+           (drop)="manejarDrop($event)"
+           (dragover)="permitirDrop($event)">
+
+        <!-- Input de archivo (solo si no hay imagen seleccionada) -->
+        <ng-container *ngIf="!imagenPreview; else vistaImagen">
+          <i class="bi bi-cloud-upload fs-1 text-purpura"></i>
+          <p class="mt-2 mb-2">Arrastra y suelta una imagen aquí o</p>
+          <input type="file" (change)="manejarArchivo($event)" hidden #fileInput>
+          <button type="button" class="btn btn-foto" (click)="fileInput.click()">
+            Seleccionar archivo
+          </button>
+        </ng-container>
+
+        <!-- Vista previa de la imagen seleccionada -->
+        <ng-template #vistaImagen>
+          <div class="preview-container animate-fade-in">
+            <a [href]="imagenPreview" target="_blank">
+              <img [src]="imagenPreview" alt="Vista previa" class="img-thumbnail shadow-lg clickable-img">
+            </a>
+            <button type="button" class="btn-remove-img" (click)="eliminarImagen()">✕</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones mt-3">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!restauranteForm.valid"
+      >
+        Agregar
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger ml-2"
+        (click)="cancelarRestaurante()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

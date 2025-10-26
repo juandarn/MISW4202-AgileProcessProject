@@ -1,0 +1,110 @@
+.receta-container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.receta-header {
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group-full {
+  grid-column: 1 / -1; 
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: #6c63ff;
+  outline: none;
+}
+
+.ingredientes-container {
+  margin-top: 25px;
+}
+
+.ingredientes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.btn-agregar {
+  background-color: #6c63ff;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-agregar:hover {
+  background-color: #5a50e7;
+}
+
+.ingrediente-linea {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.btn-icon.delete {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #e74c3c;
+  font-size: 18px;
+}
+
+.botones-centrados {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.btn-guardar {
+  background-color: #8CFF82;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-guardar:hover {
+  background-color: #00b894;
+}
+
+.btn-cancelar {
+  background-color: #ff7675;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-cancelar:hover {
+  background-color: #d63031;
+}
