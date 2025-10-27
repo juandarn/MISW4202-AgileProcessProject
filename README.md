@@ -5,6 +5,14 @@
 
 ---
 
+🎥 Demo (Video)
+
+A short presentation of the MVP in action (navigating recipes, editing ingredients, and generating purchase lists per restaurant):
+
+https://github.com/user-attachments/assets/1899e0e4-6a06-469a-9ca1-a450381998e5
+
+---
+
 ## 📖 Project Description
 
 **4201Software** is developing **Recetario**, a web application designed to manage **recipes, ingredients, and menus** across a restaurant chain.
@@ -157,4 +165,10 @@ Visit in your browser:
 ✅ Initial functional Flask backend.
 ✅ Configured unit testing with `unittest`.
 ✅ Continuous integration via GitHub Actions.
-🔄 In progress: Angular integration and analytics module.
+
+---
+
+🤝 Contributions
+
+Due to organizational policies of Universidad de los Andes, where this repository was originally created, forks and external pull requests are not allowed.
+Therefore, public contributions cannot be made directly to this repository.
